@@ -1,7 +1,7 @@
    
     Development Architecture 
     
-         developing LUDO Game .......
+         developing DICE GAME .......
         
          paypal As payment gateway,
          circle ci/cd testing
