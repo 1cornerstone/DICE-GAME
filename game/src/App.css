@@ -1,0 +1,39 @@
+.logincontainer, 
+.membercontainer{
+
+    float: center;
+
+    padding: 100px;
+    background: #343A40;
+    color: white;
+}
+.framer{
+    height: 99%;
+    width: 99%;
+    overflow: scroll;
+}
+
+body{
+    margin:10px ;
+    float: center;
+    background-color: #392148;
+}
+
+h3{
+
+    text-align: center;
+}
+
+.newrow{
+    margin-top: 40px;
+    text-align: center;
+    overflow: scroll;
+
+}
+
+error{
+     margin-top: auto;
+
+}
+
+
