@@ -31,7 +31,7 @@ class wallet extends React.Component{
                 </Grid>
 
                 <Grid container direction='row' spacing={1} alignItems='center' justify='center' style={{marginTop:'10px'}}>
-                    <Grid item sm='5' xs='12'>
+                    <Grid item sm='6' xs='12'>
                         <Paper style={{height:'130px', padding:'25px'}}>
                             <Typography variant='h6'>Account Overview</Typography>
                             <Typography variant='h7'>Your account overview and recent transactions</Typography>
@@ -39,11 +39,11 @@ class wallet extends React.Component{
                         </Paper>
                     </Grid>
                     <Grid item sm='6' xs='12'>
-                        <Paper style={{height:'130px', padding:'15px'}}>
+                        <Paper style={{height:'130px', padding:'25px'}}>
                             <Typography variant='h6' >Your Balance</Typography>
                             <Typography variant='h6' style={{fontFamily:'Arial'}}>500DG</Typography>
 
-                            <Button variant="contained" color="primary"  style={{backgroundColor:"#5484C2"}}> Top Up Balance</Button>
+                            <Button variant="contained" color="primary"  style={{backgroundColor:"#5484C2", textAlign:'right'}}> Top Up Balance</Button>
                         </Paper>
                     </Grid>
                 </Grid>

@@ -15,7 +15,7 @@ app.use(cors());
 app.use(check());
 
 app.use('/', require('./routes/usersActionRoute'));// route to user simple action
-//app.use('/game') // route to User gameEvent
+//app.use('/frontend') // route to User gameEvent
 
 
 // io.on('connection', (http) => {

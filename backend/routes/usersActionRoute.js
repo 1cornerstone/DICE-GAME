@@ -1,6 +1,5 @@
 const router = require('express').Router(),
-     {login,signup} = require('../utils/validator'),
-    seq = require('../db/sequelORM');
+     {login,signup} = require('../utils/expressValidator');
 
 
 router.post('/signup', signup ,require('../controllers/registerUserController'));

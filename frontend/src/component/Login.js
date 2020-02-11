@@ -5,7 +5,7 @@ import {
     FormControl,
     InputLabel,
     Button,
-    OutlinedInput, TextField, FormGroup,
+    OutlinedInput, TextField, FormGroup, FormControlLabel, Checkbox,
 } from "@material-ui/core";
 
 
@@ -25,7 +25,8 @@ class Login extends React.Component {
                 textAlign:'center',
             },
             formChildrenMargin:{
-                marginTop:'20px'
+                marginTop:'20px',
+                color:'white'
             },
             field:{
                 width:'330px',
@@ -63,9 +64,17 @@ class Login extends React.Component {
                                         style={styles.field}
                                     />
                                 </Grid>
+                                <Grid style={styles.formChildrenMargin}>
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox value="term" />
+                                        }
+                                        label="Remember me"
+                                    />
+                                </Grid>
 
                                 <Button variant="contained" color="primary"  style={{width:'330px',height:'50px',marginTop:'20px'}}>
-                                    SIGN UP
+                                    LOGIN
                                 </Button>
 
                             </FormGroup>
