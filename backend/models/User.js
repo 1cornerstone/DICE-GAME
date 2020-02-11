@@ -1,9 +1,8 @@
 
- const Sequelize = require('../db/sequelORM');
+  const Sequelize = require('../db/sequelORM');
+module.exports = (Sequel) =>{
 
-module.exports = () =>{
-
-  return Sequel.define("User", {
+  return Sequel.define('User', {
 
     id: {
       type: Sequelize.INTEGER,
@@ -11,7 +10,6 @@ module.exports = () =>{
       primaryKey: true,
       autoIncrement: true
     },
-
     name: {
       type: Sequelize.STRING,
       allowNull: false
@@ -24,25 +22,27 @@ module.exports = () =>{
     },
 
     password: {
-      default: 0,
       allowNull: false,
       type: Sequelize.STRING
     },
 
     balance: {
-      default: 0,
+      defaultValue: 0,
       type: Sequelize.INTEGER
     },
 
     win: {
-      default: 0,
+      defaultValue: 0,
       type: Sequelize.INTEGER
     },
 
     lose: {
-      default: 0,
+      defaultValue: 0,
       type: Sequelize.INTEGER
-    }
+    },
+
+    createdAt: Sequelize.DATE,
+    updatedAt: Sequelize.DATE
 
   });
 };

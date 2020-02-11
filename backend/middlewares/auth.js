@@ -3,11 +3,12 @@ const sessionStore = require('../db/redis'),
         gen = new Gen(256, Gen.BASE62),
       key = gen.generate();
 
-const createSession = (email)=>{
+const createSession = (username)=>{
+
     return new Promise((resolve,reject) => {
-         sessionStore.set(key,email,(err,resp)=>{
+         sessionStore.set(key,username,(err,resp)=>{
              if(!err) {
-                 sessionStore.expire(key, 4000);
+                 sessionStore.expire(key, 2000);
                  return resolve(key);
              }
              return  reject(err);

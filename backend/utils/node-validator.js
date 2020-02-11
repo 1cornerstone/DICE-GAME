@@ -16,7 +16,6 @@ const noAlphanumeric = (text) =>{
 * @param string
 */
 const withAlphanumeric = (text) =>{
-
     if (typeof text !== "string") return new TypeError("parameter must be type of string");
     pattern = /^([a-z\s\d/$])+$/i;
     return pattern.test(text)
