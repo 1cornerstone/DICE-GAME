@@ -112,6 +112,17 @@ class Register extends React.Component {
                                        />
                                    </FormControl>
                                </Grid>
+
+                               <Grid style={styles.formChildrenMargin}>
+                                   <FormControl   variant="outlined">
+                                       <InputLabel htmlFor="outlined-adornment-amount" >Email</InputLabel>
+                                       <OutlinedInput
+                                           id="outlined-adornment-amount"
+                                           labelWidth={60}
+                                           style={styles.field}
+                                       />
+                                   </FormControl>
+                               </Grid>
                                <Grid style={styles.formChildrenMargin}>
                                    <FormControl   variant="outlined">
                                        <InputLabel htmlFor="outlined-adornment-amount" >Username</InputLabel>

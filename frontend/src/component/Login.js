@@ -46,7 +46,7 @@ class Login extends React.Component {
                             <FormGroup >
                                 <Grid style={styles.formChildrenMargin}>
                                     <FormControl   variant="outlined">
-                                        <InputLabel htmlFor="outlined-adornment-amount" >Username</InputLabel>
+                                        <InputLabel htmlFor="outlined-adornment-amount" >Email</InputLabel>
                                         <OutlinedInput
                                             id="outlined-adornment-amount"
                                             labelWidth={80}
