@@ -40,7 +40,16 @@ module.exports = {
           defaultValue:0,
           type:Sequelize.INTEGER
         },
-        createdAt: Sequelize.DATE,
+      sent: {
+        defaultValue: 0,
+        type: Sequelize.INTEGER
+      },
+      receive: {
+        defaultValue: 0,
+        type: Sequelize.INTEGER
+      },
+
+      createdAt: Sequelize.DATE,
         updatedAt: Sequelize.DATE
       })
   },

@@ -14,7 +14,7 @@ const registerFunc = async (req, res) => {
     if (!noAlphanumeric(req.body.name)) return res.send(`name is not accepted`); // noAlphanumeric : no digit except white space and letters
     if (!isEmail(req.body.email)) return res.send(`Email is not well formatted `); // check if emsil i well formatted
     if (!withAlphanumeric(req.body.username)) return res.send(`username is not accepted`);// Username can contain @ and also numbers
-    if (!withAlphanumeric(req.body.password)) return res.send(`password is not accepted`);
+//    if (!withAlphanumeric(req.body.password)) return res.send(`password is not accepted`);
 
     // encrypt password
     let newPassword = await passCrypt.crypt(req.body.password).catch(err);
@@ -28,7 +28,7 @@ const registerFunc = async (req, res) => {
         username: req.body.username,
         password: newPassword
     }).catch((err) => {
-        res.send(`${err.errors[0].path} : ${err.errors[0].value} is already taken`)
+          res.send(`${err.errors[0].path} : ${err.errors[0].value} is already taken`)
     });
 
     //if data is saved

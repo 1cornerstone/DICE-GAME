@@ -45,7 +45,15 @@ module.exports = (Sequel) =>{
     lose: {
       defaultValue: 0,
       type: Sequelize.INTEGER
+    }, sent: {
+      defaultValue: 0,
+      type: Sequelize.INTEGER
     },
+    receive: {
+      defaultValue: 0,
+      type: Sequelize.INTEGER
+    },
+
 
     createdAt: Sequelize.DATE,
     updatedAt: Sequelize.DATE

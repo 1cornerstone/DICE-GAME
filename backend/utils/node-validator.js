@@ -34,6 +34,17 @@ const isEmail = (text)=>{
 };
 
 /*
+* validate if input is digit
+* Returns a Boolean value that indicates whether or not match the pattern.
+* @param string
+*/
+const isNumber =(text)=>{
+    if (typeof text !== "string") return new TypeError("parameter must be type of string");
+    pattern = /^([\d])+$/;
+    return pattern.test(text)
+};
+
+/*
 * validate Nigeria phone number
 * Returns a Boolean value that indicates whether or not match the pattern.
 * @param string
@@ -46,4 +57,4 @@ const isPhone=(text )=>{
     return pattern.test(text)
 };
 
-module.exports ={noAlphanumeric,withAlphanumeric,isEmail,isPhone};
+module.exports ={noAlphanumeric,withAlphanumeric,isEmail,isPhone,isNumber};

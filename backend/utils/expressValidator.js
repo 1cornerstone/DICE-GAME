@@ -8,6 +8,10 @@ let login = [usernameFunc(), passwordFunc()];
 
 let forgotPassword = [ emailFunc() ];
 
+// field required to send Dice-Game money : sender token,receiver email,sender password,amount
+
+let sendMoney = [token(),receiverMail(),passwordFunc(),amount()];
+
 function nameFunc() {
     return (
         check(name).not().isEmpty().withMessage("Name is empty"),
@@ -29,7 +33,6 @@ function passwordFunc() {
     )
 }
 
-
 function emailFunc() {
 
     return (
@@ -39,6 +42,27 @@ function emailFunc() {
     )
 }
 
+function receiverMail(){
+    //rec_email  : receiver email
+        return(
+                check('rec_Email').not().isEmpty().withMessage("Email is empty"),
+                check('rec_Email').isEmail().withMessage("Invalid Email"),
+                check('rec_Email').isLength({min: 5}).withMessage("Email too short, < 5")
+        )
+}
 
-module.exports = {signup, login, forgotPassword};
+function amount(){
+    return (
+        check('amount').isNumeric().withMessage("Amount must be digit")
+    )
+}
+
+function token(){
+    return (
+        check('token').not().isEmpty().withMessage("token is empty")
+    )
+}
+
+
+module.exports = {signup, login, forgotPassword,sendMoney};
 
