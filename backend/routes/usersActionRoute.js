@@ -8,8 +8,8 @@ router.get('/account/:token', require('../controllers/accountController'));
 router.get('/logout/:token',require('../controllers/logoutController'));
 router.get('/forgotpassword/:email',forgotPassword,require('../controllers/forgotPasswordController')); // not finished
 router.get('/availablePlayer',require('../controllers/getPlayerList'));      //get list of the available players
-router.post('/topup',topUp,require('../controllers/topUpController'));
-router.get('/transactions/:token',transactions,require('../controllers/transactionController'));
+router.post('/topup',topUp,require('../controllers/topUpController')); //topup account using Paypal
+router.get('/transactions/:token',transactions,require('../controllers/transactionController')); //fetch user  transactions both sent and received
 
 
 router.post('/sendmoney',sendMoney,require('../controllers/sendMoneyController')); //not done

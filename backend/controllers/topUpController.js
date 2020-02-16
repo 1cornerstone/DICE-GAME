@@ -3,8 +3,8 @@ const Sequelize = require('../db/sequelORM'),
     err = require('../utils/errorHandler'),
     userModel = require('../models/User'),
     transactionModel = require('../models/Transactions'),
-     auth = require('../middlewares/auth');
-
+     auth = require('../middlewares/auth'),
+    uuidv1 = require('uuid/v1');
 
 
 const topUp = async (req,res)=>{
@@ -16,6 +16,8 @@ const topUp = async (req,res)=>{
     if (username === null || undefined) return res.send('unAuthorized'); // if null token have expired or not valid
 
     const User = userModel(Sequel);
+
+    let txnID = uuidv1().replace(/-/g,"");
 
      const  update =  await User.update(
          {
@@ -30,6 +32,7 @@ if (update[0] === 1) {
         sentUsername :'DG',
         receivedUsername: username,
         amount: req.body.amount,
+        txnID:txnID,
         status: 1
     });
 
@@ -38,6 +41,6 @@ if (update[0] === 1) {
     }
 }
 
-};
+ };
 
 module.exports = topUp;

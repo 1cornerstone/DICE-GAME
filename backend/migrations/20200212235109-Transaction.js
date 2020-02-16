@@ -27,6 +27,10 @@ module.exports = {
         type: Sequelize.INTEGER,
         defaultValue:0
       },
+      txnID:{
+        type :Sequelize.STRING,
+        allowNull:false
+      },
       createdAt: Sequelize.DATE,
       updatedAt: Sequelize.DATE
     })
