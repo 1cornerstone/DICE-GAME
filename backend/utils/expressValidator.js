@@ -6,7 +6,7 @@ let signup = [nameFunc(), emailFunc(), usernameFunc(), passwordFunc()],
     login = [usernameFunc(), passwordFunc()],
     forgotPassword = [emailFunc()],
     sendMoney = [token(), partnerMail(), passwordFunc(), amount()],// field required to send Dice-Game money : sender token,receiver email,sender password,amount
-    receiverMoney = [partnerMail(), token(), amount, passwordFunc],
+    receiverMoney = [partnerMail(), token(), amount(), passwordFunc()],
     confirmMoneyRequest = [token()],
     topUp = [token(), amount()],
     transactions = [token()];
@@ -45,9 +45,9 @@ function emailFunc() {
 function partnerMail() {
     //rec_email  : receiver email
     return (
-        check('rec_Email').not().isEmpty().withMessage("Email is empty"),
-            check('rec_Email').isEmail().withMessage("Invalid Email"),
-            check('rec_Email').isLength({min: 5}).withMessage("Email too short, < 5")
+        check('rec_email').not().isEmpty().withMessage("Email is empty"),
+            check('rec_email').isEmail().withMessage("Invalid Email"),
+            check('rec_email').isLength({min: 5}).withMessage("Email too short, < 5")
     )
 }
 
