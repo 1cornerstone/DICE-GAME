@@ -2,20 +2,20 @@ const {check, validationResult} = require('express-validator');
 
 let name = "name", email = 'email', password = "password", username = "username";
 
-let signup = [nameFunc(),emailFunc(), usernameFunc(), passwordFunc()];
+let signup = [nameFunc(), emailFunc(), usernameFunc(), passwordFunc()],
+    login = [usernameFunc(), passwordFunc()],
+    forgotPassword = [emailFunc()],
+    sendMoney = [token(), partnerMail(), passwordFunc(), amount()],// field required to send Dice-Game money : sender token,receiver email,sender password,amount
+    receiverMoney = [partnerMail(), token(), amount, passwordFunc],
+    confirmMoneyRequest = [token()],
+    topUp = [token(), amount()],
+    transactions = [token()];
 
-let login = [usernameFunc(), passwordFunc()];
-
-let forgotPassword = [ emailFunc() ];
-
-// field required to send Dice-Game money : sender token,receiver email,sender password,amount
-
-let sendMoney = [token(),receiverMail(),passwordFunc(),amount()];
 
 function nameFunc() {
     return (
         check(name).not().isEmpty().withMessage("Name is empty"),
-        check(name).isLength({min: 6}).withMessage("Name too short")
+            check(name).isLength({min: 6}).withMessage("Name too short")
     )
 }
 
@@ -42,27 +42,27 @@ function emailFunc() {
     )
 }
 
-function receiverMail(){
+function partnerMail() {
     //rec_email  : receiver email
-        return(
-                check('rec_Email').not().isEmpty().withMessage("Email is empty"),
-                check('rec_Email').isEmail().withMessage("Invalid Email"),
-                check('rec_Email').isLength({min: 5}).withMessage("Email too short, < 5")
-        )
+    return (
+        check('rec_Email').not().isEmpty().withMessage("Email is empty"),
+            check('rec_Email').isEmail().withMessage("Invalid Email"),
+            check('rec_Email').isLength({min: 5}).withMessage("Email too short, < 5")
+    )
 }
 
-function amount(){
+function amount() {
     return (
         check('amount').isNumeric().withMessage("Amount must be digit")
     )
 }
 
-function token(){
+function token() {
     return (
         check('token').not().isEmpty().withMessage("token is empty")
     )
 }
 
 
-module.exports = {signup, login, forgotPassword,sendMoney};
+module.exports = {signup, login, forgotPassword, sendMoney, topUp, transactions, receiverMoney, confirmMoneyRequest};
 
