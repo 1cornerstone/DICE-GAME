@@ -8,7 +8,7 @@ const createSession = (username)=>{
     return new Promise((resolve,reject) => {
          sessionStore.set(key,username,(err,resp)=>{
              if(!err) {
-                 sessionStore.expire(key, 2000);
+                 sessionStore.expire(key, 4000);
                  return resolve(key);
              }
              return  reject(err);
