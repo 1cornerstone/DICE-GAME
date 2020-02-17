@@ -7,12 +7,13 @@ const validatorRequest = require('../utils/requestAuth'),
 
 const registerFunc = async (req, res) => {
 
-    validatorRequest(req, res);
+    let check = validatorRequest(req,res);
+    if (!check.isEmpty()) {return res.status(402).json({errors: check.array()});}
 
     // validate body using regrex before using it
 
     if (!noAlphanumeric(req.body.name)) return res.send(`name is not accepted`); // noAlphanumeric : no digit except white space and letters
-    if (!isEmail(req.body.email)) return res.send(`Email is not well formatted `); // check if emsil i well formatted
+    if (!isEmail(req.body.email)) return res.send(`Email is not well formatted `); // check if email i well formatted
     if (!withAlphanumeric(req.body.username)) return res.send(`username is not accepted`);// Username can contain @ and also numbers
 //    if (!withAlphanumeric(req.body.password)) return res.send(`password is not accepted`);
 

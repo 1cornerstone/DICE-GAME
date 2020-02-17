@@ -7,7 +7,9 @@ const validatorRequest = require('../utils/requestAuth'),
 
 
 const  loginFunc = async (req,res) =>{
-        validatorRequest(req,res);
+
+      let check = validatorRequest(req,res);
+    if (!check.isEmpty()) {return res.status(402).json({errors: check.array()});}
 
         if (!withAlphanumeric(req.body.username)) return res.send(`username is not accepted`);// Username can contain @ and also numbers
         if (!withAlphanumeric(req.body.password)) return res.send(`password is not accepted`);

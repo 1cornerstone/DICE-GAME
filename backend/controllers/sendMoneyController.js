@@ -8,7 +8,8 @@
 
 const sendMoneyFunc = async (req,res) =>{
 
-    validatorRequest(req,res);
+    let check = validatorRequest(req,res);
+    if (!check.isEmpty()) {return res.status(402).json({errors: check.array()});}
 
     let username = await auth.getSession(req.body.token).catch(err);  // get user username with his token
 
@@ -17,16 +18,15 @@ const sendMoneyFunc = async (req,res) =>{
     if (!isNumber(req.body.amount)) return res.send('Amount must be number');
 
     // validate user  then make transfer
-
     const User = userModel(Sequel);
 
     let response = await User.findAll({
         where: { username : username}
     }).catch(err);
 
-   let checkpassword = await passCrypt.compPassword(req.body.password ,response[0].dataValues.password).catch(err);
+   let checkPassword = await passCrypt.compPassword(req.body.password ,response[0].dataValues.password).catch(err);
 
-    if ( checkpassword === true) {
+    if ( checkPassword === true) {
            /*
            * check sender balance if amount can be deducted and
            * if it can be,  deduct the balance and also increment the sent out

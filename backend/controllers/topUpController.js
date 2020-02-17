@@ -10,7 +10,8 @@ const Sequelize = require('../db/sequelORM'),
 
 const topUp = async (req,res)=>{
 
-    validatorRequest(req,res);
+    let check = validatorRequest(req,res);
+    if (!check.isEmpty()) {return res.status(402).json({errors: check.array()});}
 
     if (req.body.token === null || undefined) return res.send('unAuthorized'); // if user didnt provide token this will reject his request
 

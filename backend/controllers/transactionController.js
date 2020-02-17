@@ -23,7 +23,6 @@ const transactions = async (req, res) => {
     });
 
     res.send(result)
-
 };
 
 
