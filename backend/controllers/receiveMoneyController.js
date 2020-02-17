@@ -4,9 +4,11 @@ const Sequelize = require('../db/sequelORM'),
     {isNumber, withAlphanumeric} = require('../utils/node-validator'),
     transactionModel = require('../models/Transactions'),
     auth = require('../middlewares/auth'),
-    uuidv1 = require('uuid/v1');
+    uuidv1 = require('uuid/v1'),
+    validatorRequest = require('../utils/requestAuth');
 
 const receiveMoney = async (req, res) => {
+
 
     /*
     * if sent out is not greeter than 2000
@@ -16,6 +18,8 @@ const receiveMoney = async (req, res) => {
     * giver confirmed by pressing his password
     *  */
 
+
+    validatorRequest(req,res);
 
     if (req.body.token === null || undefined) return res.send('unAuthorized'); // if user didnt provide token this will reject his request
 

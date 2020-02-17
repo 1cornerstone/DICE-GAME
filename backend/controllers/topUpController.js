@@ -4,10 +4,13 @@ const Sequelize = require('../db/sequelORM'),
     userModel = require('../models/User'),
     transactionModel = require('../models/Transactions'),
      auth = require('../middlewares/auth'),
-    uuidv1 = require('uuid/v1');
+    uuidv1 = require('uuid/v1'),
+    validatorRequest = require('../utils/requestAuth');
 
 
 const topUp = async (req,res)=>{
+
+    validatorRequest(req,res);
 
     if (req.body.token === null || undefined) return res.send('unAuthorized'); // if user didnt provide token this will reject his request
 

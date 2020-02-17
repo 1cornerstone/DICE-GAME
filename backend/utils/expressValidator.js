@@ -7,15 +7,20 @@ let signup = [nameFunc(), emailFunc(), usernameFunc(), passwordFunc()],
     forgotPassword = [emailFunc()],
     sendMoney = [token(), usernameFunc(), passwordFunc(), amount()],// field required to send Dice-Game money : sender token,receiver email,sender password,amount
     receiverMoney = [usernameFunc(), token(), amount()],
-    confirmMoneyRequest = [token()],
-    topUp = [token(), amount()],
-    transactions = [token()];
+    confirmMoneyRequest = [token(),passwordFunc(),txnIDFunc()],
+    topUp = [token(), amount()];
 
 
 function nameFunc() {
     return (
         check(name).not().isEmpty().withMessage("Name is empty"),
             check(name).isLength({min: 6}).withMessage("Name too short")
+    )
+}
+
+function txnIDFunc() {
+    return (
+        check('txnID').not().isEmpty().withMessage("Transaction ID is empty")
     )
 }
 
@@ -55,5 +60,6 @@ function token() {
 }
 
 
-module.exports = {signup, login, forgotPassword, sendMoney, topUp, transactions, receiverMoney, confirmMoneyRequest};
+
+module.exports = {signup, login, forgotPassword, sendMoney, topUp, receiverMoney, confirmMoneyRequest,txnIDFunc};
 

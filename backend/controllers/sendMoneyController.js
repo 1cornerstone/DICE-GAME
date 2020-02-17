@@ -3,9 +3,12 @@
         auth =require('../middlewares/auth'),
         userModel = require('../models/User'),
         passCrypt = require('../utils/passCrypt'),
-         err = require('../utils/errorHandler');
+         err = require('../utils/errorHandler'),
+        validatorRequest = require('../utils/requestAuth');
 
 const sendMoneyFunc = async (req,res) =>{
+
+    validatorRequest(req,res);
 
     let username = await auth.getSession(req.body.token).catch(err);  // get user username with his token
 
