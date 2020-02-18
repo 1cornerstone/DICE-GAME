@@ -1,5 +1,5 @@
 import React from "react";
-import {Breadcrumbs, Grid, Paper, Typography, Link, Avatar, Chip, Button} from "@material-ui/core";
+import {Breadcrumbs, Grid, Paper, Typography, Link, Avatar, Chip, Button, Container} from "@material-ui/core";
 import dice1 from './assest/dice-1.png';
 import dice6 from './assest/dice-6.png';
 import diceImage from "./assest/dice.png";
@@ -166,68 +166,69 @@ class singleplayer extends React.Component {
             }
         };
         return (
-            <Grid container direction='column' style={{marginTop: "20px"}}>
+            <Container>
+                <Grid container direction='column' style={{marginTop: "20px"}}>
 
-                {/* Breadcrumb*/}
+                    {/* Breadcrumb*/}
 
-                <Grid item xs={12} sm={12}>
-                    <Paper style={{padding: '20px'}}>
-                        <Breadcrumbs aria-label="breadcrumb">
-                            <Link color="inherit" href="/dashboard">
-                                Dashboard
-                            </Link>
-                            <Typography color="textPrimary"> Game </Typography>
-                        </Breadcrumbs>
-                    </Paper>
-                </Grid>
-
-                {/*Options Container*/}
-
-                <Grid container direction='row' justify='center' alignItems='center' style={{marginTop: '20px'}}>
-                    {/* new singleplayer*/}
-                    <Grid item xs={12} sm={5} style={{marginBottom: '10px'}}>
-                        <Button variant="contained" color='primary'>
-                            New Game
-                        </Button>
-                    </Grid>
-
-                    {/* Quit*/}
-                    <Grid item xs={12} sm={5}>
-                        <Button variant="contained" color="default">
-                            Quit Game
-                        </Button>
-                    </Grid>
-                </Grid>
-
-                {/* main singleplayer Container*/}
-
-                <Grid container direction='row' justify='center' alignItems='center' style={{marginTop: '20px'}}>
-
-                    {/* player 1 panel*/}
-                    <Grid item sm={4} xs={12} className='player-1'>
-                        <Paper style={styles.panel}>
-
-                            <Grid container direction='column'>
-
-                                <Grid item sm={12} xs={12}>
-                                    <Chip style={{height: '40px', float: 'left',margin:'10px'}}
-                                          color="primary"
-                                          avatar={<Avatar alt="dice" src={diceImage}
-                                                          style={styles.usernamePanel}/>}
-                                          label="Akindev"
-                                    />
-                                </Grid>
-                                <Grid item sm={12} xs={12} style={{padding: '40px'}}>
-                                    <Typography variant='h2' style={styles.scoreboard}>0</Typography>
-                                </Grid>
-
-                            </Grid>
-
+                    <Grid item xs={12} sm={12}>
+                        <Paper style={{padding: '20px'}}>
+                            <Breadcrumbs aria-label="breadcrumb">
+                                <Link color="inherit" href="/dashboard">
+                                    Dashboard
+                                </Link>
+                                <Typography color="textPrimary"> Game </Typography>
+                            </Breadcrumbs>
                         </Paper>
                     </Grid>
 
-                    {/* dice roll*/}
-                    <Grid item sm={3} xs={12} style={{ padding:'5%'}}>
+                    {/*Options Container*/}
+
+                    <Grid container direction='row' justify='center' alignItems='center' style={{marginTop: '20px'}}>
+                        {/* new singleplayer*/}
+                        <Grid item xs={12} sm={5} style={{marginBottom: '10px'}}>
+                            <Button variant="contained" color='primary'>
+                                New Game
+                            </Button>
+                        </Grid>
+
+                        {/* Quit*/}
+                        <Grid item xs={12} sm={5}>
+                            <Button variant="contained" color="default">
+                                Quit Game
+                            </Button>
+                        </Grid>
+                    </Grid>
+
+                    {/* main singleplayer Container*/}
+
+                    <Grid container direction='row' justify='center' alignItems='center' style={{marginTop: '20px'}}>
+
+                        {/* player 1 panel*/}
+                        <Grid item sm={4} xs={12} className='player-1'>
+                            <Paper style={styles.panel}>
+
+                                <Grid container direction='column'>
+
+                                    <Grid item sm={12} xs={12}>
+                                        <Chip style={{height: '40px', float: 'left',margin:'10px'}}
+                                              color="primary"
+                                              avatar={<Avatar alt="dice" src={diceImage}
+                                                              style={styles.usernamePanel}/>}
+                                              label="Akindev"
+                                        />
+                                    </Grid>
+                                    <Grid item sm={12} xs={12} style={{padding: '40px'}}>
+                                        <Typography variant='h2' style={styles.scoreboard}>0</Typography>
+                                    </Grid>
+
+                                </Grid>
+
+                            </Paper>
+                        </Grid>
+
+                        {/* dice roll*/}
+                        <Grid item sm={3} xs={12} style={{ padding:'5%'}}>
                             <Grid container direction='column' justify='center' alignItems='center'>
 
                                 <Grid item sm={4} xs={12} style={{marginBottom:'20px'}}>
@@ -243,35 +244,37 @@ class singleplayer extends React.Component {
                                     <Button variant="outlined" style={{backgroundColor:'white'}} >HOLD</Button>
                                 </Grid>
                             </Grid>
-                    </Grid>
-.
-                    {/* player 2 panel*/}
-                    <Grid item sm={4} xs={12} className='player-1'>
-                        <Paper style={styles.panel}>
+                        </Grid>
+                        .
+                        {/* player 2 panel*/}
+                        <Grid item sm={4} xs={12} className='player-1'>
+                            <Paper style={styles.panel}>
 
-                            <Grid container direction='column'>
+                                <Grid container direction='column'>
 
-                                <Grid item sm={12} xs={12}>
-                                    <Chip style={{height: '40px', float: 'right',margin:'10px'}}
-                                          color="primary"
-                                          avatar={<Avatar alt="dice" src={diceImage}
-                                                          style={styles.usernamePanel}/>}
-                                          label="DICE-GAME"
-                                    />
+                                    <Grid item sm={12} xs={12}>
+                                        <Chip style={{height: '40px', float: 'right',margin:'10px'}}
+                                              color="primary"
+                                              avatar={<Avatar alt="dice" src={diceImage}
+                                                              style={styles.usernamePanel}/>}
+                                              label="DICE-GAME"
+                                        />
+                                    </Grid>
+                                    <Grid item sm={12} xs={12} style={{padding: '40px'}}>
+                                        <Typography variant='h2' style={styles.scoreboard}>0</Typography>
+                                    </Grid>
+
                                 </Grid>
-                                <Grid item sm={12} xs={12} style={{padding: '40px'}}>
-                                    <Typography variant='h2' style={styles.scoreboard}>0</Typography>
-                                </Grid>
 
-                            </Grid>
+                            </Paper>
+                        </Grid>
 
-                        </Paper>
                     </Grid>
 
                 </Grid>
 
-            </Grid>
-        );
+            </Container>
+            );
     }
 }
 

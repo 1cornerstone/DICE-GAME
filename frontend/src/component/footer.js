@@ -6,7 +6,7 @@ class Footer extends Component {
         return (
             <Grid container direction='column' justify='center' alignItems='center'>
                 <Grid item spacing={2} >
-                    <Typography   style={{color:'white',marginTop:'30px'}}>
+                    <Typography   style={{marginTop:'30px'}}>
                         @copyright 2020  designed by Akindev
                     </Typography>
                 </Grid>

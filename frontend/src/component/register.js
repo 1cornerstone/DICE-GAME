@@ -5,7 +5,7 @@ import {
     FormControl,
     InputLabel,
     Button,
-    OutlinedInput, TextField, FormGroup, FormControlLabel, Checkbox
+    OutlinedInput, TextField, FormGroup, FormControlLabel, Checkbox, Container
 
 } from "@material-ui/core";
 
@@ -86,94 +86,96 @@ class Register extends React.Component {
                 marginTop:'20px'
             },
             field:{
-                width:'330px',
-                backgroundColor:'white'
+                width:'350px',
+                backgroundColor:'white',
+                margin:'2px'
+
+            },
+            div:{
+                marginTop: '20px'
             }
         };
 
 
         return (
-            <Grid container spacing={2} direction="column"  style={{margin:"auto", color:'white'}}>
-                <Grid item sm={12} xs={12} style={{margin:'40px'}}>
-                    <Typography variant='h3' component='h5' style={{textAlign:'center'}}>DICE-GAME REGISTRATION</Typography>
-                </Grid>
-                <Grid item sm={12} xs={12} >
+            <Container>
+                <Grid container spacing={2} direction="column"  style={{margin:"auto"}}>
+                    <Grid item  style={{margin:'20px'}}>
+                        <Typography variant='h5' component='h5' style={{textAlign:'center'}}>DICE-GAME REGISTRATION</Typography>
+                    </Grid>
 
-                    <div style={styles.divCenter}>
-                        <form >
-                           <FormGroup >
-                               <Grid>
-                                   <FormControl   variant="outlined">
-                                       <InputLabel htmlFor="outlined-adornment-amount" >Name</InputLabel>
-                                       <OutlinedInput
-                                           id="outlined-adornment-amount"
-                                           labelWidth={60}
-                                           style={styles.field}
-                                       />
-                                   </FormControl>
-                               </Grid>
+                    <Grid container spacing={2} direction='column' justify='center' alignItems='center'>
+                        <div style={styles.div}>
+                            <FormControl   variant="outlined">
+                                <InputLabel htmlFor="outlined-adornment-amount" >Name</InputLabel>
+                                <OutlinedInput
+                                    id="outlined-adornment-amount"
+                                    labelWidth={50}
+                                    style={styles.field}
+                                />
+                            </FormControl>
+                        </div>
+                        <div style={styles.div}>
 
-                               <Grid style={styles.formChildrenMargin}>
-                                   <FormControl   variant="outlined">
-                                       <InputLabel htmlFor="outlined-adornment-amount" >Email</InputLabel>
-                                       <OutlinedInput
-                                           id="outlined-adornment-amount"
-                                           labelWidth={60}
-                                           style={styles.field}
-                                       />
-                                   </FormControl>
-                               </Grid>
-                               <Grid style={styles.formChildrenMargin}>
-                                   <FormControl   variant="outlined">
-                                       <InputLabel htmlFor="outlined-adornment-amount" >Username</InputLabel>
-                                       <OutlinedInput
-                                           id="outlined-adornment-amount"
-                                           labelWidth={80}
-                                           style={styles.field}
-                                       />
-                                   </FormControl>
-                               </Grid>
-                               <Grid style={styles.formChildrenMargin}>
-                                   <TextField
-                                       id="filled-password-input"
-                                       label="Password"
-                                       type="password"
-                                       autoComplete="current-password"
-                                       variant="outlined"
-                                       style={styles.field}
-                                   />
-                               </Grid>
-                               <Grid style={styles.formChildrenMargin}>
-                                   <TextField
-                                       id="filled-password-input"
-                                       label="Confirm Password"
-                                       type="password"
-                                       autoComplete="current-password"
-                                       variant="outlined"
-                                       style={styles.field}
-                                   />
-                               </Grid>
-                               <Grid style={styles.formChildrenMargin}>
-                                   <FormControlLabel
-                                       control={
-                                           <Checkbox value="term" />
-                                       }
-                                       label="Agree with our Terms and Condition"
-                                   />
-                               </Grid>
+                            <FormControl   variant="outlined">
+                                <InputLabel htmlFor="outlined-adornment-amount" >Email</InputLabel>
+                                <OutlinedInput
+                                    id="outlined-adornment-amount"
+                                    labelWidth={50}
+                                    style={styles.field}
+                                />
+                            </FormControl>
+                        </div>
+                        <div style={styles.div}>
+                            <FormControl   variant="outlined">
+                                <InputLabel htmlFor="outlined-adornment-amount" >Username</InputLabel>
+                                <OutlinedInput
+                                    id="outlined-adornment-amount"
+                                    labelWidth={80}
+                                    style={styles.field}
+                                />
+                            </FormControl>
+                        </div>
+                        <div style={styles.div}>
+                            <TextField
+                                id="filled-password-input"
+                                label="Password"
+                                type="password"
+                                autoComplete="current-password"
+                                variant="outlined"
+                                style={styles.field}
+                            />
+                        </div>
+                        <div style={styles.div}>
+                            <TextField
+                                id="filled-password-input"
+                                label="Password"
+                                type="password"
+                                autoComplete="current-password"
+                                variant="outlined"
+                                style={styles.field}
+                            />
+                        </div>
+                        <div style={styles.div}>
+                            <FormControlLabel
+                                control={
+                                    <Checkbox value="term" />
+                                }
+                                label="Agree with our Terms and Condition"
+                            />
+                        </div>
+                        <div style={styles.div}>
+                            <Button variant="contained" color="primary"  style={{width:'230px',height:'50px'}}>
+                                SIGN UP
+                            </Button>
 
-                               <Button variant="contained" color="primary"  style={{width:'230px',height:'50px'}}>
-                                  SIGN UP
-                               </Button>
-
-                           </FormGroup>
-                        </form>
-                    </div>
+                        </div>
+                    </Grid>
 
                 </Grid>
-            </Grid>
 
 
+            </Container>
         );
     }
 

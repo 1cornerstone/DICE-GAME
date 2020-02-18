@@ -9,7 +9,7 @@ import {
     TableBody,
     Chip,
     Breadcrumbs,
-    Link, Typography,TablePagination
+    Link, Typography, TablePagination, Container
 } from "@material-ui/core";
 import TableCell from "@material-ui/core/TableCell";
 import Rating from '@material-ui/lab/Rating';
@@ -21,74 +21,76 @@ class onlineUserList extends React.Component{
 
 
         return (
-            <Grid container direction='column' style={{marginTop:'20px'}} >
-                <Grid item xs={12} sm={12}>
-                    <Paper style={{padding: '20px'}}>
-                        <Breadcrumbs aria-label="breadcrumb">
-                            <Link color="inherit" href="/dashboard">
-                                Dashboard
-                            </Link>
-                            <Typography color="textPrimary"> Available-Users </Typography>
-                        </Breadcrumbs>
-                    </Paper>
-                </Grid>
+                <Container>
+                    <Grid container direction='column' style={{marginTop:'20px'}} >
+                        <Grid item xs={12} sm={12}>
+                            <Paper style={{padding: '20px'}}>
+                                <Breadcrumbs aria-label="breadcrumb">
+                                    <Link color="inherit" href="/dashboard">
+                                        Dashboard
+                                    </Link>
+                                    <Typography color="textPrimary"> Available-Users </Typography>
+                                </Breadcrumbs>
+                            </Paper>
+                        </Grid>
 
-                <Grid item sm={12} xs={12} >
-                    <TableContainer component={Paper} style={{marginTop:'20px'}}  >
-                        <Table  aria-label="customized table" >
-                            <TableHead >
-                                <TableRow style={{backgroundColor:'black',color:'white'}}>
-                                    <TableCell style={{color:"white"}}> S/N</TableCell>
-                                    <TableCell style={{color:"white"}}>Username</TableCell>
-                                    <TableCell style={{color:"white"}}>info</TableCell>
-                                    <TableCell style={{color:"white"}}> Rank</TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                <TableRow>
-                                    <TableCell > 1</TableCell>
-                                    <TableCell>Akindev</TableCell>
-                                    <TableCell>
-                                        <Chip
-                                            label="Win 15"
-                                        />
-                                        <Chip
-                                            label="Lose 10"
-                                            color="secondary"/>
+                        <Grid item sm={12} xs={12} >
+                            <TableContainer component={Paper} style={{marginTop:'20px'}}  >
+                                <Table  aria-label="customized table" >
+                                    <TableHead >
+                                        <TableRow style={{backgroundColor:'black',color:'white'}}>
+                                            <TableCell style={{color:"white"}}> S/N</TableCell>
+                                            <TableCell style={{color:"white"}}>Username</TableCell>
+                                            <TableCell style={{color:"white"}}>info</TableCell>
+                                            <TableCell style={{color:"white"}}> Rank</TableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                        <TableRow>
+                                            <TableCell > 1</TableCell>
+                                            <TableCell>Akindev</TableCell>
+                                            <TableCell>
+                                                <Chip
+                                                    label="Win 15"
+                                                />
+                                                <Chip
+                                                    label="Lose 10"
+                                                    color="secondary"/>
 
-                                    </TableCell>
-                                    <TableCell>
-                                        <Rating name="read-only" value={3} readOnly />
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell > 2</TableCell>
-                                    <TableCell>Isreal</TableCell>
-                                    <TableCell>
-                                        <Chip
-                                            label="Win 5"
-                                        />
-                                        <Chip
-                                            label="Lose 2"
-                                            color="secondary"/>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Rating name="read-only" value={3} readOnly />
+                                            </TableCell>
+                                        </TableRow>
+                                        <TableRow>
+                                            <TableCell > 2</TableCell>
+                                            <TableCell>Isreal</TableCell>
+                                            <TableCell>
+                                                <Chip
+                                                    label="Win 5"
+                                                />
+                                                <Chip
+                                                    label="Lose 2"
+                                                    color="secondary"/>
 
-                                    </TableCell>
-                                    <TableCell>  <Rating name="read-only" value={1} readOnly /></TableCell>
-                                </TableRow>
+                                            </TableCell>
+                                            <TableCell>  <Rating name="read-only" value={1} readOnly /></TableCell>
+                                        </TableRow>
 
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
 
-                </Grid>
+                        </Grid>
 
-                <TablePagination
-                rowsPerPageOptions={[5, 10, 25]}
-                component="div"
-                />
+                        <TablePagination
+                            rowsPerPageOptions={[5, 10, 25]}
+                            component="div"
+                        />
 
-            </Grid>
+                    </Grid>
 
+                </Container>
         )
     }
 

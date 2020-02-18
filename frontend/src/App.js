@@ -17,8 +17,6 @@ function App() {
   return (
      <div >
          <Navbar/>
-         <Container  >
-
              <BrowserRouter>
                  <Route path='/home' component={Home} />
                  <Route path='/signup' component={Register} />
@@ -30,7 +28,6 @@ function App() {
                  <Route path='/wallet' component={Wallet} />
                  <Route path='/profile' component={Profile} />
              </BrowserRouter>
-         </Container>
          <Footer/>
      </div>
 
