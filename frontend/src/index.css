@@ -14,7 +14,8 @@ code {
 
 
 .frontImage{
-  animation: rotation 8s infinite linear;
+  /*animation: rotation 8s infinite linear;*/
+  background-color: black;
 }
 @keyframes rotation {
   from {

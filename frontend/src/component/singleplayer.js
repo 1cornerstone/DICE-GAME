@@ -3,8 +3,9 @@ import {Breadcrumbs, Grid, Paper, Typography, Link, Avatar, Chip, Button, Contai
 import dice1 from './assest/dice-1.png';
 import dice6 from './assest/dice-6.png';
 import diceImage from "./assest/dice.png";
+import ShowDialog from "./dialog";
 
-class singleplayer extends React.Component {
+class singlePlayer extends React.Component {
 
     // constructor(props) {
     //   super(props);
@@ -134,6 +135,12 @@ class singleplayer extends React.Component {
     //   //e.preventDefault();
     // }
 
+    componentDidMount() {
+
+    }
+
+
+
     render() {
 
         const styles = {
@@ -237,7 +244,7 @@ class singleplayer extends React.Component {
 
                                 <Grid item sm={4} xs={12}>
                                     <Avatar variant="square" alt="dice" src={dice6}
-                                            className='frontImage' style={{height:'50px'}}/>
+                                            className='frontImage' style={{height:'50px',background:'black'}}/>
                                 </Grid>
 
                                 <Grid item sm={4} xs={12} style={{marginTop:'20px'}}>
@@ -278,4 +285,4 @@ class singleplayer extends React.Component {
     }
 }
 
-export default singleplayer;
+export default singlePlayer;
