@@ -117,28 +117,28 @@ class singlePlayer extends React.Component {
         this.setState({turn: this.state.turn + 1});
     }
     //
-    // reset() {
-    //
-    //   this.setState({
-    //     player1total: 0,
-    //     player2total: 0,
-    //     player1: 0,
-    //     player2: 0,
-    //     turn: 0
-    //   });
-    //   $('#rolldice ').attr("disabled", false);
-    //   $('.btn-hold ').attr("disabled", false);
-    //   this.addStyle();
-    //
-    //   //e.preventDefault();
-    // }
+    reset =()=> {
+
+      this.setState({
+          yourScore: 0,
+          computerScore: 0,
+          yourPoint: 0,
+          computerPoint: 0,
+          toWin: 100,
+          turn: 0
+      });
+
+      this.addStyle();
+
+      //e.preventDefault();
+    }
 
     componentDidMount() {
         this.addStyle()
     }
 
-    onNewGameBtnClicked =()=>{
-
+    onQuitGameBtnClicked =()=>{
+        window.location.href = '/home'
     };
 
     render() {
@@ -204,14 +204,14 @@ class singlePlayer extends React.Component {
                     <Grid container direction='row' justify='center' alignItems='center' style={{marginTop: '20px'}}>
                         {/* new singleplayer*/}
                         <Grid item xs={12} sm={5} style={{marginBottom: '10px'}}>
-                            <Button variant="contained" color='primary' onClick={this.onNewGameBtnClicked}>
+                            <Button variant="contained" color='primary' onClick={this.reset}>
                                 New Game
                             </Button>
                         </Grid>
 
                         {/* Quit*/}
                         <Grid item xs={12} sm={5}>
-                            <Button variant="contained" color="default">
+                            <Button variant="contained" color="default" onClick={this.onQuitGameBtnClicked}>
                                 Quit Game
                             </Button>
                         </Grid>
