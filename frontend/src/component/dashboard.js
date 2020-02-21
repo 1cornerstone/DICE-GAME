@@ -10,10 +10,6 @@ import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 class dashboard extends React.Component {
 
 
-    constructor(props){
-        super(props)
-    }
-
 
   componentDidUpdate(prevProps, prevState, snapshot) {
         console.log('ds')

@@ -1,13 +1,17 @@
 import React, {Component} from 'react'
-import {Grid, Typography, Card, CardContent, Container, Avatar, Button} from "@material-ui/core";
+import {Avatar, Card, CardContent, Container, Grid, Typography} from "@material-ui/core";
 import playnow from './assest/playnow.jpeg'
 import register from './assest/register.png'
 import wallet from './assest/wallet.png'
 import multiplayer from './assest/multiplayer.png'
-import computer from './assest/computer.png'
 
 
 class home extends Component {
+
+
+    onPlayNowClicked =()=>{
+         window.location.href = "/game";
+    };
 
     render() {
 
@@ -27,6 +31,10 @@ class home extends Component {
                 margin: "auto",
                 width: '40px',
                 height:'40px'
+            },
+            card:{
+                height:'170px',
+                paddingTop:'10px'
             }
         };
 
@@ -54,7 +62,7 @@ class home extends Component {
                     <Grid container spacing={2} direction="row" justify='center' alignItems='center'>
 
                         <Grid item xs={12} sm={3}>
-                            <Card>
+                            <Card style={styles.card}>
                                 <CardContent>
                                         <Avatar style={{height:'50px', width:'50px', fontSize:'60px',margin:'auto'}} src={register}></Avatar>
                                     <Typography gutterBottom variant="body1"  component="p"  style={styles.typo}>
@@ -68,7 +76,7 @@ class home extends Component {
                             </Card>
                         </Grid>
                         <Grid item xs={12} sm={3}>
-                            <Card>
+                            <Card style={styles.card}>
                                 <CardContent>
                                     <Avatar style={{height: '50px', width: '50px', fontSize: '60px', margin: 'auto'}} src={wallet}/>
 
@@ -82,10 +90,10 @@ class home extends Component {
                             </Card>
                         </Grid>
                         <Grid item xs={12} sm={3}>
-                            <Card>
+                            <Card style={styles.card}>
                                 <CardContent>
                                     <Avatar style={{height:'50px', width:'60px', fontSize:'60px',margin:'auto'}} src={multiplayer}/>
-                                    <Typography gutterBottom variant="body1" component="p">
+                                    <Typography gutterBottom variant="body1" component="p" style={styles.typo}>
                                        Computer
                                     </Typography>
                                     <Typography variant="body2" color="textSecondary" component="p">
@@ -95,20 +103,20 @@ class home extends Component {
                             </Card>
                         </Grid>
                         <Grid item xs={12} sm={3}>
-                            <Card>
+                            <Card style={styles.card}>
                                 <CardContent>
                                     <Avatar style={{height:'50px', width:'50px', fontSize:'60px',margin:'auto'}} src={multiplayer}/>
-                                    <Typography gutterBottom variant="body1" component="p">
+                                    <Typography gutterBottom variant="body1" component="p" style={styles.typo}>
                                        Multiplayer
                                     </Typography>
-                                    <Typography variant="body2" color="textSecondary" component="p">
+                                    <Typography variant="body2" color="textSecondary" component="p" >
                                       Bet with another player online using DG Coin.
                                     </Typography>
                                 </CardContent>
                             </Card>
                         </Grid>
                         <Grid item xs={12} sm={12} style={{textAlign:'center'}}>
-                                <img style={{textAlign:'center', margin: 'auto', height:'80px'}} src={playnow}/>
+                                <img style={{textAlign:'center', margin: 'auto', height:'80px'}} src={playnow} onClick={this.onPlayNowClicked}/>
                         </Grid>
 
                     </Grid>

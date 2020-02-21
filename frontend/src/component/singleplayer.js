@@ -1,67 +1,64 @@
 import React from "react";
-import {Breadcrumbs, Grid, Paper, Typography, Link, Avatar, Chip, Button, Container} from "@material-ui/core";
-import dice1 from './assest/dice-1.png';
-import dice6 from './assest/dice-6.png';
+import {Avatar, Breadcrumbs, Button, Chip, Container, Grid, Link, Paper, Typography} from "@material-ui/core";
+import dice6 from './assest/dice-1.png';
 import diceImage from "./assest/dice.png";
-import ShowDialog from "./dialog";
+import $ from 'jquery'
 
 class singlePlayer extends React.Component {
 
-    // constructor(props) {
-    //   super(props);
+    constructor(props) {
+      super(props);
+
+      this.state ={
+        yourScore: 0,
+        computerScore: 0,
+        yourPoint: 0,
+        computerPoint: 0,
+        toWin: 100,
+        turn: 0
+      };
+    }
+
+
+    onDiceRoll =(e)=> {
+        let diceNumber = ( Math.floor(Math.random() * 6) + 1);
+        document.getElementById('diceImage').src = diceImage;
+
+      ((this.state.turn % 2) === 0) ? (this.updateTotal(0, diceNumber)) : (this.updateTotal(1, diceNumber));
+      e.preventDefault();
+
+    };
     //
-    //   this.state ={
-    //     player1total: 70,
-    //     player2total: 70,
-    //     player1: 0,
-    //     player2: 0,
-    //     toWin: 100,
-    //     turn: 0
-    //   };
-    //
-    // }
-    //
-    // incrementTurn() {
-    //   this.setState({turn: this.state.turn + 1});
-    // }
-    //
-    // onDiceRoll(e) {
-    //   var diceNumber = ( Math.floor(Math.random() * 6) + 1);
-    //
-    //   // here what i did is
-    //   ((this.state.turn % 2) === 0) ? (this.updateTotal(0, diceNumber)) : (this.updateTotal(1, diceNumber))
-    //   e.preventDefault();
-    // }
-    //
-    // updateTotal(player, number) {
-    //
-    //   $(".dice").attr("src", "img/dice-" + number + ".png");
-    //
-    //   if (number === 1) {
-    //     this.incrementTurn();
-    //     if(player === 0){
-    //       this.removeStyle()
-    //       this.setState({player1 :0})
-    //     }else{
-    //       this.setState({player2: 0});
-    //       this.addStyle()
-    //     }
-    //   } else {
-    //
-    //     if (player === 0) {
-    //       var addPlayer1 = (this.state.player1 + number);
-    //       this.setState({player1: addPlayer1});
-    //       const value1 = (this.state.player1total + addPlayer1);
-    //       this.isFinised("Player 1", value1);
-    //
-    //     } else {
-    //       var addPlayer2 = (this.state.player2 + number);
-    //       this.setState({player2: addPlayer2});
-    //       var value2 = (this.state.player2total + addPlayer2);
-    //       this.isFinised("Player 2", value2);
-    //     }
-    //   }
-    // }
+
+    updateTotal(player, number) {
+
+      $("#diceImage").attr("src", "img/dice-" + number + ".png");
+
+      if (number === 1) {
+        this.incrementTurn();
+        if(player === 0){
+          this.removeStyle();
+          this.setState({yourPoint :0})
+        }else{
+          this.setState({computerPoint: 0});
+          this.addStyle()
+        }
+      } else {
+
+        if (player === 0) {
+          let addPlayer1 = (this.state.yourPoint + number);
+          this.setState({yourPoint: addPlayer1});
+          const value1 = (this.state.yourScore + addPlayer1);
+          //this.isFinised("Player 1", value1);
+
+        } else {
+          var addPlayer2 = (this.state.computerPoint + number);
+          this.setState({computerPoint: addPlayer2});
+          var value2 = (this.state.computerScore + addPlayer2);
+          //this.isFinised("Player 2", value2);
+        }
+     }
+    }
     //
     // isFinised(player, val) {
     //
@@ -81,43 +78,44 @@ class singlePlayer extends React.Component {
     //   }
     // }
     //
-    // onHold(e) {
+    onHold =(e)=> {
+
+      let whom = this.state.turn % 2;
+      this.incrementTurn();
+      switch (whom) {
+        case 0:
+          this.removeStyle();
+          let pl1 = this.state.yourPoint + this.state.yourScore;
+          this.setState({
+            yourScore: pl1,
+            yourPoint: 0
+          });
+          break;
+        case 1:
+          this.addStyle();
+          let pl2 = this.state.computerScore + this.state.computerPoint;
+          this.setState({
+            computerScore: pl2,
+              computerPoint: 0
+          });
+          break;
+        default:
+          break;
+      }
+    };
     //
-    //   var whom = this.state.turn % 2;
-    //   this.incrementTurn();
-    //   switch (whom) {
-    //     case 0:
-    //       this.removeStyle()
-    //       var pl1 = this.state.player1total + this.state.player1;
-    //       this.setState({
-    //         player1total: pl1,
-    //         player1: 0
-    //       });
-    //       break;
-    //     case 1:
-    //       this.addStyle()
-    //       var pl2 = this.state.player2total + this.state.player2;
-    //       this.setState({
-    //         player2total: pl2,
-    //         player2: 0
-    //       });
-    //       break;
-    //     default:
-    //       break;
-    //   }
-    // }
+    addStyle() {
+        document.getElementById('player-0-panel').style.backgroundColor = '#392148';
+        document.getElementById('player-1-panel').style.backgroundColor = '#fff';
+    }
     //
-    // addStyle() {
-    //   $(".player-1-panel").removeClass("active");
-    //   $(".player-0-panel").addClass("active");
-    //
-    // }
-    //
-    // removeStyle() {
-    //   $(".player-0-panel").removeClass("active");
-    //   $(".player-1-panel").addClass("active");
-    //
-    // }
+    removeStyle() {
+        document.getElementById('player-1-panel').style.backgroundColor = '#392148';
+        document.getElementById('player-0-panel').style.backgroundColor = '#fff';
+    }
+    incrementTurn() {
+        this.setState({turn: this.state.turn + 1});
+    }
     //
     // reset() {
     //
@@ -136,10 +134,12 @@ class singlePlayer extends React.Component {
     // }
 
     componentDidMount() {
-
+        this.addStyle()
     }
 
+    onNewGameBtnClicked =()=>{
 
+    };
 
     render() {
 
@@ -154,7 +154,7 @@ class singlePlayer extends React.Component {
                 justifyContent: 'center'
             },
             panel: {
-                height: '10%',
+                height: '4%',
             },
             scoreboard: {
                 fontFamily: "Arial",
@@ -163,13 +163,23 @@ class singlePlayer extends React.Component {
                 borderRadius: '1px',
                 backgroundColor: '#392148',
                 margin: "auto",
-                padding: '12px',
+                padding: '5px',
+                color: 'white'
+            },point: {
+                fontFamily: "Arial",
+                textAlign: "center",
+                width: '80px',
+                borderRadius: '1px',
+                backgroundColor: '#392148',
+                margin: "5px",
+                padding: '5px',
+                float:'right',
                 color: 'white'
             },
             usernamePanel:{
                 margin:'5px',
                 width: '30px',
-                height: '25px'
+                height: '15px'
             }
         };
         return (
@@ -194,7 +204,7 @@ class singlePlayer extends React.Component {
                     <Grid container direction='row' justify='center' alignItems='center' style={{marginTop: '20px'}}>
                         {/* new singleplayer*/}
                         <Grid item xs={12} sm={5} style={{marginBottom: '10px'}}>
-                            <Button variant="contained" color='primary'>
+                            <Button variant="contained" color='primary' onClick={this.onNewGameBtnClicked}>
                                 New Game
                             </Button>
                         </Grid>
@@ -212,21 +222,24 @@ class singlePlayer extends React.Component {
                     <Grid container direction='row' justify='center' alignItems='center' style={{marginTop: '20px'}}>
 
                         {/* player 1 panel*/}
-                        <Grid item sm={4} xs={12} className='player-1'>
-                            <Paper style={styles.panel}>
+                        <Grid item sm={4} xs={12}>
+                            <Paper style={styles.panel} id='player-0-panel' >
 
                                 <Grid container direction='column'>
 
                                     <Grid item sm={12} xs={12}>
-                                        <Chip style={{height: '40px', float: 'left',margin:'10px'}}
+                                        <Chip style={{height: '30px', float: 'left',margin:'10px'}}
                                               color="primary"
                                               avatar={<Avatar alt="dice" src={diceImage}
                                                               style={styles.usernamePanel}/>}
                                               label="Akindev"
                                         />
+
+                                        <Typography variant='h5' style={styles.point} >{this.state.yourPoint}</Typography>
+
                                     </Grid>
-                                    <Grid item sm={12} xs={12} style={{padding: '40px'}}>
-                                        <Typography variant='h2' style={styles.scoreboard}>0</Typography>
+                                    <Grid item sm={12} xs={12} style={{padding: '30px'}}>
+                                        <Typography variant='h3' style={styles.scoreboard}>{this.state.yourScore}</Typography>
                                     </Grid>
 
                                 </Grid>
@@ -239,36 +252,38 @@ class singlePlayer extends React.Component {
                             <Grid container direction='column' justify='center' alignItems='center'>
 
                                 <Grid item sm={4} xs={12} style={{marginBottom:'20px'}}>
-                                    <Button variant="outlined" style={{backgroundColor:'white'}} >ROll</Button>
+                                    <Button variant="outlined" style={{backgroundColor:'white'}}  onClick={this.onDiceRoll}>ROll</Button>
                                 </Grid>
 
                                 <Grid item sm={4} xs={12}>
                                     <Avatar variant="square" alt="dice" src={dice6}
-                                            className='frontImage' style={{height:'50px',background:'black'}}/>
+                                            id='diceImage' style={{height:'50px',background:'black'}}/>
                                 </Grid>
 
                                 <Grid item sm={4} xs={12} style={{marginTop:'20px'}}>
-                                    <Button variant="outlined" style={{backgroundColor:'white'}} >HOLD</Button>
+                                    <Button variant="outlined" style={{backgroundColor:'white'}} onClick={this.onHold}  >HOLD</Button>
                                 </Grid>
                             </Grid>
                         </Grid>
                         .
                         {/* player 2 panel*/}
-                        <Grid item sm={4} xs={12} className='player-1'>
-                            <Paper style={styles.panel}>
+                        <Grid item sm={4} xs={12} >
+                            <Paper style={styles.panel} id='player-1-panel'>
 
                                 <Grid container direction='column'>
 
                                     <Grid item sm={12} xs={12}>
-                                        <Chip style={{height: '40px', float: 'right',margin:'10px'}}
+                                        <Chip style={{height: '30px', float: 'left',margin:'10px'}}
                                               color="primary"
                                               avatar={<Avatar alt="dice" src={diceImage}
                                                               style={styles.usernamePanel}/>}
                                               label="DICE-GAME"
                                         />
+                                        <Typography variant='h5' style={styles.point}>{this.state.computerPoint}</Typography>
+
                                     </Grid>
-                                    <Grid item sm={12} xs={12} style={{padding: '40px'}}>
-                                        <Typography variant='h2' style={styles.scoreboard}>0</Typography>
+                                    <Grid item sm={12} xs={12} style={{padding: '30px'}}>
+                                        <Typography variant='h2' style={styles.scoreboard}>{this.state.computerScore}</Typography>
                                     </Grid>
 
                                 </Grid>

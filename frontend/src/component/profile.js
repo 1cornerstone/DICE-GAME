@@ -2,16 +2,18 @@ import React from "react";
 import {
     Breadcrumbs,
     Button,
+    Container,
     Grid,
     Link,
     Paper,
-    Typography,
-    Avatar,
-    TableContainer,
     Table,
-    TableHead, TableRow, TableCell, TableBody, Chip, Container
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableRow,
+    Typography
 } from "@material-ui/core";
-import  image from "./assest/ava.JPG"
+import image from "./assest/ava.JPG"
 import Rating from "@material-ui/lab/Rating";
 
 class profile extends React.Component{

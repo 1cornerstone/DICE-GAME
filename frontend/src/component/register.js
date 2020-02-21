@@ -1,14 +1,16 @@
 import React from 'react'
 import {
-    Grid,
-    Typography,
-    FormControl,
-    InputLabel,
     Button,
-    OutlinedInput, TextField, FormGroup, FormControlLabel, Checkbox, Container
-
+    Checkbox,
+    Container,
+    FormControl,
+    FormControlLabel,
+    Grid,
+    InputLabel,
+    OutlinedInput,
+    TextField,
+    Typography
 } from "@material-ui/core";
-
 
 
 class Register extends React.Component {

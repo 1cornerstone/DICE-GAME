@@ -6,7 +6,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    
+
 }
 
 .clearfix::after {
@@ -39,10 +39,10 @@ body {
 
 .player-0-panel,
 .player-1-panel {
-    width: 50%;
-    float: left;
-    height: 600px;
-    padding: 100px;
+    /*width: 50%;*/
+    /*float: left;*/
+    /*height: 600px;*/
+    /*padding: 100px;*/
 }
 
 
@@ -80,7 +80,7 @@ body {
     color: #EB4D4D;
     top: -7px;
     right: 10px;
-    
+
 }
 
 .player-current-box {
@@ -105,7 +105,7 @@ body {
 
 button {
     position: absolute;
-    width: 200px;
+    width: 150px;
     left: 50%;
     transform: translateX(-50%);
     color: #555;
@@ -126,30 +126,8 @@ button:focus {
     outline: none;
 }
 
-i {
-    color: #EB4D4D;
-    display: inline-block;
-    margin-right: 15px;
-    font-size: 32px;
-    line-height: 1;
-    vertical-align: text-top;
-    margin-top: -4px;
-    transition: margin 0.3s;
+
+.player-1-panel{
+    background-color: #343A40;
 }
-
-.btn-new { top: 45px;}
-.btn-roll { top: 403px;}
-.btn-hold { top: 467px;}
-
-.dice {
-    position: absolute;
-    left: 50%;
-    top: 178px;
-    transform: translateX(-50%);
-    height: 100px;
-    box-shadow: 0px 10px 60px rgba(0, 0, 0, 0.10);
-}
-
-.winner { background-color: #f7f7f7; }
-.winner .player-name { font-weight: 300; color: #EB4D4D; }
 
