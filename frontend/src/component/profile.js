@@ -38,7 +38,7 @@ class profile extends React.Component{
 
                             <Grid item sm='2' xs='6' style={{margin:'auto'}} >
                                 <img src={image} alt='pro' style={{ height:'270px'}}/>
-                                <Button variant="contained" color="primary"  style={{backgroundColor:"#5484C2",marginTop:'10px'}}>Update Profile</Button>
+                                <Button variant="contained" color="primary"  style={{backgroundColor:"#5484C2",marginTop:'10px'}}>Edit</Button>
                             </Grid>
 
                             <Grid item sm='6' xs='12' style={{margin:'10px',color:'gray'}}>
@@ -72,12 +72,7 @@ class profile extends React.Component{
                                                 <TableCell align="left">Country</TableCell>
                                                 <TableCell align="center">USA</TableCell>
                                             </TableRow>
-                                            <TableRow>
-                                                <TableCell align="left">Bio</TableCell>
-                                                <TableCell align="center">Am a self taught programmer with 3years experience in Java( JavaFx,Swing,android), Javascript(React,Node Js). i  understand  Agile methodologies and TDD also which i can say am a full stack developer, have build and deploy project.
-                                                    My stack are Php,Java(JavaFx,Swing,android),Javascript (React,Node Js), Database(Mysql,Postgres,Redis,Mongodb,Firebase) Css Framework(Bootstrap,Semantic-UI, Material UI) and Scss||Sass, CI/CD (Circle CI) ,Virtual Machine (GCM) , Serveless(aws lamda) and Testing Cypress and Jest
-                                                </TableCell>
-                                            </TableRow>
+
                                         </TableBody>
                                     </Table>
                                 </TableContainer>

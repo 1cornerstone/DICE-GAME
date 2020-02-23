@@ -11,6 +11,21 @@ class dashboard extends React.Component {
 
 
 
+    onGamebtnClicked =()=>{
+        window.location.href = '/game';
+
+    };
+
+    onWalletBtnClicked = ()=>{
+        window.location.href = '/wallet';
+    };
+
+    onListBtnClicked = ()=>{
+        window.location.href = '/players';
+
+    };
+
+
   componentDidUpdate(prevProps, prevState, snapshot) {
         console.log('ds')
   }
@@ -56,7 +71,7 @@ class dashboard extends React.Component {
                                 </Typography>
                             </CardContent>
                             <CardActions>
-                                <Button variant="contained" style={styles.button} startIcon={<PlayArrowIcon/>}>PLAY</Button>
+                                <Button variant="contained" style={styles.button} onClick={this.onGamebtnClicked} startIcon={<PlayArrowIcon/>}>PLAY</Button>
                             </CardActions>
                         </Card>
                     </Grid>
@@ -87,7 +102,7 @@ class dashboard extends React.Component {
                                     </Typography>
                                 </CardContent>
                                 <CardActions>
-                                    <Button variant="outlined" style={styles.button} startIcon={<PersonOutlineIcon/>}>View</Button>
+                                    <Button variant="outlined" style={styles.button} onClick={this.onListBtnClicked} startIcon={<PersonOutlineIcon/>}>View</Button>
                                 </CardActions>
                             </Card>
                         </Grid>
@@ -102,7 +117,7 @@ class dashboard extends React.Component {
                                 </Typography>
                             </CardContent>
                             <CardActions>
-                                <Button variant="outlined" style={styles.button}  startIcon={<AccountBalanceWalletIcon/>}>Check</Button>
+                                <Button variant="outlined" style={styles.button} onClick={this.onWalletBtnClicked}  startIcon={<AccountBalanceWalletIcon/>}>Check</Button>
                             </CardActions>
                         </Card>
                     </Grid>

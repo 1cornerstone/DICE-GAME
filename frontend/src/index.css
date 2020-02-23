@@ -29,4 +29,13 @@ code {
 body{
   /*background-color: #392148;*/
 }
+.option{
+  background-color: beige;
+}
+
+.option:hover {
+  cursor: pointer;
+  opacity: 0.5;
+  transition: 0.3s;
+}
 

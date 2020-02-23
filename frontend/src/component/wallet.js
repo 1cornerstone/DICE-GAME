@@ -1,5 +1,5 @@
 import React from "react";
-import {Breadcrumbs, Button, Container, Grid, Link, Paper, Typography} from "@material-ui/core";
+import {Breadcrumbs, Button, Container, Grid, Link, Paper, Typography,Modal} from "@material-ui/core";
 import NearMeOutlinedIcon from '@material-ui/icons/NearMeOutlined';
 import TransitEnterexitOutlinedIcon from '@material-ui/icons/TransitEnterexitOutlined';
 import TimelineOutlinedIcon from '@material-ui/icons/TimelineOutlined';
@@ -7,7 +7,28 @@ import TimelineOutlinedIcon from '@material-ui/icons/TimelineOutlined';
 
 class wallet extends React.Component {
 
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            modal:false,
+            open:false
+        }
+    }
+
+
     render() {
+
+       const setOpen =(param)=>{
+            this.setState({
+               modal:param
+           })
+        };
+
+        const handleClose = () => {
+            setOpen(false);
+        };
 
         const styles = {
             actionItem: {
@@ -46,22 +67,23 @@ class wallet extends React.Component {
                                 <Typography variant='h6' style={{fontFamily: 'Arial'}}>500DG</Typography>
 
                                 <Button variant="contained" color="primary"
-                                        style={{backgroundColor: "#5484C2", textAlign: 'right'}}> Top Up
-                                    Balance</Button>
+                                        style={{backgroundColor: "#5484C2", textAlign: 'right'}}> Top Up</Button>
                             </Paper>
                         </Grid>
                     </Grid>
 
                     <Grid container direction='row' spacing={1} alignItems='center' justify='center'
                           style={{marginTop: '30px', marginBottom: '25px'}}>
-                        <Grid item sm='3' xs='12' style={{padding: '50px', backgroundColor: "#816ED4"}}>
-                            <div style={styles.actionItem}>
-                                <NearMeOutlinedIcon/>
-                                <Typography>SEND</Typography>
-                            </div>
+                        <Grid item sm='3' xs='12' >
+                              <Paper style={{padding: '40px', backgroundColor: "#816ED4"}} class='option' onClick={setOpen(true)}>
+                                  <div style={styles.actionItem}>
+                                      <NearMeOutlinedIcon/>
+                                      <Typography>SEND</Typography>
+                                  </div>
+                              </Paper>
                         </Grid>
                         <Grid item sm='3' xs='12'>
-                            <Paper style={{padding: '50px', backgroundColor: '#5093EB', color: 'white'}}>
+                            <Paper style={{padding: '40px', backgroundColor: '#5093EB', color: 'white'}} class='option'>
                                 <div style={styles.actionItem}>
                                     <TransitEnterexitOutlinedIcon/>
                                     <Typography>RECEIVE</Typography>
@@ -69,7 +91,7 @@ class wallet extends React.Component {
                             </Paper>
                         </Grid>
                         <Grid item sm='3' xs='12'>
-                            <Paper style={{padding: '50px', backgroundColor: '#5484C2', color: 'white'}}>
+                            <Paper style={{padding: '40px', backgroundColor: '#5484C2', color: 'white'}} class='option'>
                                 <div style={styles.actionItem}>
                                     <TimelineOutlinedIcon/>
                                     <Typography>Transactions</Typography>
@@ -77,6 +99,22 @@ class wallet extends React.Component {
                             </Paper>
                         </Grid>
                     </Grid>
+
+
+                    <Modal
+                        aria-labelledby="simple-modal-title"
+                        aria-describedby="simple-modal-description"
+
+                        onClose={handleClose}
+                    >
+                        <div>
+                            <h2 id="simple-modal-title">Text in a modal</h2>
+                            <p id="simple-modal-description">
+                                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+                            </p>
+                            {/*<SimpleModal />*/}
+                        </div>
+                    </Modal>
                 </Grid>
             </Container>
         )

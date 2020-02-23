@@ -2,6 +2,7 @@ import React from "react";
 import {Avatar, Breadcrumbs, Button, Chip, Container, Grid, Link, Paper, Typography} from "@material-ui/core";
 import dice6 from './assest/dice-1.png';
 import diceImage from "./assest/dice.png";
+import winner from "./assest/winner.png";
 import $ from 'jquery'
 
 class singlePlayer extends React.Component {
@@ -14,7 +15,7 @@ class singlePlayer extends React.Component {
         computerScore: 0,
         yourPoint: 0,
         computerPoint: 0,
-        toWin: 100,
+        toWin: 10,
         turn: 0
       };
     }
@@ -49,34 +50,40 @@ class singlePlayer extends React.Component {
           let addPlayer1 = (this.state.yourPoint + number);
           this.setState({yourPoint: addPlayer1});
           const value1 = (this.state.yourScore + addPlayer1);
-          //this.isFinised("Player 1", value1);
+          this.isFinised("Player 1", value1);
 
         } else {
-          var addPlayer2 = (this.state.computerPoint + number);
+          let addPlayer2 = (this.state.computerPoint + number);
           this.setState({computerPoint: addPlayer2});
-          var value2 = (this.state.computerScore + addPlayer2);
-          //this.isFinised("Player 2", value2);
+          let value2 = (this.state.computerScore + addPlayer2);
+          this.isFinised("Player 2", value2);
         }
      }
     }
     //
-    // isFinised(player, val) {
-    //
-    //   if (val >= this.state.toWin) {
-    //     if (player === "Player 1") {
-    //       this.setState({
-    //         player1total: val
-    //       })
-    //     } else {
-    //       this.setState({
-    //         player2total: val
-    //       })
-    //     }
-    //     $('#rolldice ').attr("disabled", true);
-    //     $('.btn-hold ').attr("disabled", true);
-    //     $('.btn-new ').focus();
-    //   }
-    // }
+    isFinised(player, val) {
+
+      if (val >= this.state.toWin) {
+        if (player === "Player 1") {
+          this.setState({
+           yourScore: val
+          });
+            document.getElementById('player-0-panel').style.backgroundColor = 'mediumpurple';
+
+        } else {
+          this.setState({
+            computerScore: val
+          });
+
+            document.getElementById('player-1-panel').style.backgroundColor = 'mediumpurple';
+
+        }
+          document.getElementById('roll').disabled = true;
+          document.getElementById('hold').disabled = true;
+          document.getElementById('newGame').focus();
+
+      }
+    }
     //
     onHold =(e)=> {
 
@@ -124,14 +131,14 @@ class singlePlayer extends React.Component {
           computerScore: 0,
           yourPoint: 0,
           computerPoint: 0,
-          toWin: 100,
+          toWin: 10,
           turn: 0
       });
 
       this.addStyle();
 
       //e.preventDefault();
-    }
+    };
 
     componentDidMount() {
         this.addStyle()
@@ -151,7 +158,8 @@ class singlePlayer extends React.Component {
                 width: '70px',
                 height: '50px',
                 margin: 'auto',
-                justifyContent: 'center'
+                justifyContent: 'center',
+
             },
             panel: {
                 height: '4%',
@@ -188,6 +196,10 @@ class singlePlayer extends React.Component {
 
                     {/* Breadcrumb*/}
 
+                    <Grid item xs={6} sm={6}>
+
+                    </Grid>
+
                     <Grid item xs={12} sm={12}>
                         <Paper style={{padding: '20px'}}>
                             <Breadcrumbs aria-label="breadcrumb">
@@ -204,14 +216,14 @@ class singlePlayer extends React.Component {
                     <Grid container direction='row' justify='center' alignItems='center' style={{marginTop: '20px'}}>
                         {/* new singleplayer*/}
                         <Grid item xs={12} sm={5} style={{marginBottom: '10px'}}>
-                            <Button variant="contained" color='primary' onClick={this.reset}>
+                            <Button variant="contained" color='primary' id='newGame' onClick={this.reset}>
                                 New Game
                             </Button>
                         </Grid>
 
                         {/* Quit*/}
                         <Grid item xs={12} sm={5}>
-                            <Button variant="contained" color="default" onClick={this.onQuitGameBtnClicked}>
+                            <Button variant="contained" color="default"  onClick={this.onQuitGameBtnClicked}>
                                 Quit Game
                             </Button>
                         </Grid>
@@ -219,7 +231,7 @@ class singlePlayer extends React.Component {
 
                     {/* main singleplayer Container*/}
 
-                    <Grid container direction='row' justify='center' alignItems='center' style={{marginTop: '20px'}}>
+                    <Grid container  direction='row' justify='center' alignItems='center' style={{marginTop: '20px'}}>
 
                         {/* player 1 panel*/}
                         <Grid item sm={4} xs={12}>
@@ -252,7 +264,7 @@ class singlePlayer extends React.Component {
                             <Grid container direction='column' justify='center' alignItems='center'>
 
                                 <Grid item sm={4} xs={12} style={{marginBottom:'20px'}}>
-                                    <Button variant="outlined" style={{backgroundColor:'white'}}  onClick={this.onDiceRoll}>ROll</Button>
+                                    <Button variant="outlined"  style={{backgroundColor:'white'}} id='roll'  onClick={this.onDiceRoll}>ROll</Button>
                                 </Grid>
 
                                 <Grid item sm={4} xs={12}>
@@ -261,7 +273,7 @@ class singlePlayer extends React.Component {
                                 </Grid>
 
                                 <Grid item sm={4} xs={12} style={{marginTop:'20px'}}>
-                                    <Button variant="outlined" style={{backgroundColor:'white'}} onClick={this.onHold}  >HOLD</Button>
+                                    <Button variant="outlined" style={{backgroundColor:'white'}} id='hold' onClick={this.onHold}  >HOLD</Button>
                                 </Grid>
                             </Grid>
                         </Grid>

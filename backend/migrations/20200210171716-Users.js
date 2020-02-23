@@ -48,7 +48,15 @@ module.exports = {
         defaultValue: 0,
         type: Sequelize.INTEGER
       },
-
+      state:{
+          type:Sequelize.STRING
+      },
+      country :{
+        type : Sequelize.STRING
+      },
+      image :{
+          type: Sequelize.STRING
+      },
       createdAt: Sequelize.DATE,
         updatedAt: Sequelize.DATE
       })

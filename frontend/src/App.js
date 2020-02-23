@@ -23,8 +23,8 @@ function App() {
                     <Route path="/login" component={Login} />
                     <Route path="/dashboard" component={Dashboard} />
                     <Route path="/game" component={Game} />
-                    <Route path="/multiPlayer" component={Game2} />
-                    <Route path="/list" component={List} />
+                    {/*<Route path="/multiPlayer" component={Game2} />*/}
+                    <Route path="/players" component={List} />
                     <Route path="/wallet" component={Wallet} />
                     <Route path="/profile" component={Profile} />
                     <Redirect exact from="/" to='/home' />
