@@ -34,8 +34,9 @@ const forgotPassword = [
 ];
 
 const sendMoney = [
-    check(username).not().isEmpty().withMessage("email is empty"),
-    check(username).isLength({min: 5}).withMessage("Email too short, < 5"),
+    check(email).not().isEmpty().withMessage("email is empty"),
+    check(email).isEmail().withMessage("Invalid Email"),
+    check(email).isLength({min: 5}).withMessage("Email too short, < 5"),
     check(password).not().isEmpty().withMessage("password is empty"),
     check(password).isLength({min: 5}).withMessage("password too short < 5"),
     check('amount').isNumeric().withMessage("Amount must be digit"),
@@ -43,8 +44,9 @@ const sendMoney = [
 ]; // field required to send Dice-Game money : sender token,receiver email,sender password,amount
 
 const  receiveMoney = [
-    check(username).not().isEmpty().withMessage("email is empty"),
-    check(username).isLength({min: 5}).withMessage("Email too short, < 5"),
+    check(email).not().isEmpty().withMessage("email is empty"),
+    check(email).isEmail().withMessage("Invalid Email"),
+    check(email).isLength({min: 5}).withMessage("Email too short, < 5"),
     check('amount').isNumeric().withMessage("Amount must be digit"),
     check('token').not().isEmpty().withMessage("token is empty")
 
