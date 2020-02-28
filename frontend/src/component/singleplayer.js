@@ -3,30 +3,44 @@ import {Avatar, Breadcrumbs, Button, Chip, Container, Grid, Link, Paper, Typogra
 import dice6 from './assest/dice-1.png';
 import diceImage from "./assest/dice.png";
 import winner from "./assest/winner.png";
+import hurray from "./assest/hurray.png";
 import $ from 'jquery'
+import dialog from "./dialog";
+
 
 class singlePlayer extends React.Component {
 
     constructor(props) {
       super(props);
-
       this.state ={
         yourScore: 0,
         computerScore: 0,
         yourPoint: 0,
         computerPoint: 0,
-        toWin: 10,
-        turn: 0
+        toWin: 100,
+        turn: 0,
+          Username:'AKINDEV',
+          gamePanel:false,
+          winnerPanel:true,
+          nextCheck:'false'
       };
     }
 
+    incrementTurn() {
+        let counter  = this.state.turn + 1;
+        this.setState({turn: counter});
 
-    onDiceRoll =(e)=> {
+    }
+
+    onDiceRoll =()=> {
+
         let diceNumber = ( Math.floor(Math.random() * 6) + 1);
         document.getElementById('diceImage').src = diceImage;
+        console.log(` Rolled Number ${diceNumber}`);
 
-      ((this.state.turn % 2) === 0) ? (this.updateTotal(0, diceNumber)) : (this.updateTotal(1, diceNumber));
-      e.preventDefault();
+        ((this.state.turn % 2) === 0) ? (this.updateTotal(0, diceNumber)) : (this.updateTotal(1, diceNumber));
+
+     return false;
 
     };
     //
@@ -35,8 +49,10 @@ class singlePlayer extends React.Component {
 
       $("#diceImage").attr("src", "img/dice-" + number + ".png");
 
+      // rule one if use play 1 auto-hold user
       if (number === 1) {
         this.incrementTurn();
+
         if(player === 0){
           this.removeStyle();
           this.setState({yourPoint :0})
@@ -45,83 +61,108 @@ class singlePlayer extends React.Component {
           this.addStyle()
         }
       } else {
-
-        if (player === 0) {
+          if (player === 0) {
           let addPlayer1 = (this.state.yourPoint + number);
           this.setState({yourPoint: addPlayer1});
           const value1 = (this.state.yourScore + addPlayer1);
-          this.isFinised("Player 1", value1);
+          this.isFinished("Player 1", value1);
 
         } else {
           let addPlayer2 = (this.state.computerPoint + number);
           this.setState({computerPoint: addPlayer2});
           let value2 = (this.state.computerScore + addPlayer2);
-          this.isFinised("Player 2", value2);
+          this.isFinished("Player 2", value2);
+          this.computerFunc()
+
         }
      }
     }
+
     //
-    isFinised(player, val) {
+    isFinished(player, val) {
 
       if (val >= this.state.toWin) {
         if (player === "Player 1") {
           this.setState({
            yourScore: val
           });
-            document.getElementById('player-0-panel').style.backgroundColor = 'mediumpurple';
-
         } else {
           this.setState({
-            computerScore: val
+            computerScore: val,
+              Username:'Computer'
           });
-
-            document.getElementById('player-1-panel').style.backgroundColor = 'mediumpurple';
-
         }
-          document.getElementById('roll').disabled = true;
-          document.getElementById('hold').disabled = true;
-          document.getElementById('newGame').focus();
 
+          this.setState({
+              gamePanel:true,
+              winnerPanel:false
+          });
       }
     }
     //
+
     onHold =(e)=> {
 
-      let whom = this.state.turn % 2;
-      this.incrementTurn();
-      switch (whom) {
-        case 0:
-          this.removeStyle();
-          let pl1 = this.state.yourPoint + this.state.yourScore;
-          this.setState({
-            yourScore: pl1,
-            yourPoint: 0
-          });
-          break;
-        case 1:
-          this.addStyle();
-          let pl2 = this.state.computerScore + this.state.computerPoint;
-          this.setState({
-            computerScore: pl2,
-              computerPoint: 0
-          });
-          break;
-        default:
-          break;
-      }
+        let whom = this.state.turn % 2;
+        this.incrementTurn();
+
+        switch (whom) {
+            case 0:
+                let pl1 = this.state.yourPoint + this.state.yourScore;
+                this.setState({
+                    yourScore: pl1,
+                    yourPoint: 0
+                });
+                console.log('user hold');
+
+                this.removeStyle();
+                break;
+            case 1:
+                this.addStyle();
+                let pl2 = this.state.computerScore + this.state.computerPoint;
+                this.setState({
+                    computerScore: pl2,
+                    computerPoint: 0
+                });
+
+                console.log('computer hold');
+                break;
+            default:
+                break;
+        }
     };
+
+    //
+    computerFunc = ()=>{
+        /*check if to hold,
+        * else generate rand for computer*/
+       var check_hold ;
+       //
+         setTimeout(()=>{
+           check_hold = ( Math.floor(Math.random() * 10));
+           ((check_hold % 3) === 0)?( this.onHold()):( this.onDiceRoll());
+        },1000);
+
+    };
+
+
     //
     addStyle() {
         document.getElementById('player-0-panel').style.backgroundColor = '#392148';
         document.getElementById('player-1-panel').style.backgroundColor = '#fff';
+
     }
     //
     removeStyle() {
         document.getElementById('player-1-panel').style.backgroundColor = '#392148';
         document.getElementById('player-0-panel').style.backgroundColor = '#fff';
+        this.computerFunc();
     }
-    incrementTurn() {
-        this.setState({turn: this.state.turn + 1});
+
+    disableBtn (param){
+        this.setState({
+            nextCheck:param
+        })
     }
     //
     reset =()=> {
@@ -132,7 +173,10 @@ class singlePlayer extends React.Component {
           yourPoint: 0,
           computerPoint: 0,
           toWin: 10,
-          turn: 0
+          turn: 0,
+          winnerUsername:'',
+          gamePanel:false,
+          winnerPanel:true
       });
 
       this.addStyle();
@@ -148,7 +192,10 @@ class singlePlayer extends React.Component {
         window.location.href = '/home'
     };
 
+
     render() {
+
+
 
         const styles = {
             dicePanel: {
@@ -188,6 +235,18 @@ class singlePlayer extends React.Component {
                 margin:'5px',
                 width: '30px',
                 height: '15px'
+            },
+            winnerDisplay:{
+               marginTop:'40px',
+                textAlign:'center',
+                display:'block',
+                backgroundImage:`url(${hurray})`,
+                backgroundPosition:'center',
+                backgroundSize:'auto',
+                height:'300px',
+                width:'300px',
+                padding:'20px'
+
             }
         };
         return (
@@ -196,9 +255,6 @@ class singlePlayer extends React.Component {
 
                     {/* Breadcrumb*/}
 
-                    <Grid item xs={6} sm={6}>
-
-                    </Grid>
 
                     <Grid item xs={12} sm={12}>
                         <Paper style={{padding: '20px'}}>
@@ -229,12 +285,32 @@ class singlePlayer extends React.Component {
                         </Grid>
                     </Grid>
 
+
+                    {/*Game rules*/}
+
+
+                    <Grid  item >
+
+                    </Grid>
                     {/* main singleplayer Container*/}
 
                     <Grid container  direction='row' justify='center' alignItems='center' style={{marginTop: '20px'}}>
 
+                        <Grid container justify='center' alignItems='center' >
+                            <Grid item hidden={this.state.winnerPanel}>
+                                <Paper style={styles.winnerDisplay} >
+                                    <div >
+                                        <img src={winner} style={{width:'200px',height:'200px'}}/>
+
+                                        <br/>
+                                        <Typography variant='overline'>{this.state.Username} won the game</Typography>
+
+                                    </div>
+                                </Paper>
+                            </Grid>
+                        </Grid>
                         {/* player 1 panel*/}
-                        <Grid item sm={4} xs={12}>
+                        <Grid item sm={4} xs={12}  hidden={this.state.gamePanel}>
                             <Paper style={styles.panel} id='player-0-panel' >
 
                                 <Grid container direction='column'>
@@ -244,7 +320,7 @@ class singlePlayer extends React.Component {
                                               color="primary"
                                               avatar={<Avatar alt="dice" src={diceImage}
                                                               style={styles.usernamePanel}/>}
-                                              label="Akindev"
+                                              label={this.state.Username}
                                         />
 
                                         <Typography variant='h5' style={styles.point} >{this.state.yourPoint}</Typography>
@@ -260,26 +336,26 @@ class singlePlayer extends React.Component {
                         </Grid>
 
                         {/* dice roll*/}
-                        <Grid item sm={3} xs={12} style={{ padding:'5%'}}>
+                        <Grid item sm={3} xs={12} style={{ padding:'5%'}} hidden={this.state.gamePanel}>
                             <Grid container direction='column' justify='center' alignItems='center'>
 
                                 <Grid item sm={4} xs={12} style={{marginBottom:'20px'}}>
-                                    <Button variant="outlined"  style={{backgroundColor:'white'}} id='roll'  onClick={this.onDiceRoll}>ROll</Button>
+                                    <Button variant="outlined"  style={{backgroundColor:'white'}}  id='roll'   onClick={this.onDiceRoll}>ROll</Button>
                                 </Grid>
 
                                 <Grid item sm={4} xs={12}>
                                     <Avatar variant="square" alt="dice" src={dice6}
-                                            id='diceImage' style={{height:'50px',background:'black'}}/>
+                                            id='diceImage' class='dices'/>
                                 </Grid>
 
                                 <Grid item sm={4} xs={12} style={{marginTop:'20px'}}>
-                                    <Button variant="outlined" style={{backgroundColor:'white'}} id='hold' onClick={this.onHold}  >HOLD</Button>
+                                    <Button variant="outlined" style={{backgroundColor:'white'}} id='hold'   onClick={this.onHold}  >HOLD</Button>
                                 </Grid>
                             </Grid>
                         </Grid>
                         .
                         {/* player 2 panel*/}
-                        <Grid item sm={4} xs={12} >
+                        <Grid item sm={4} xs={12} hidden={this.state.gamePanel} >
                             <Paper style={styles.panel} id='player-1-panel'>
 
                                 <Grid container direction='column'>
@@ -289,7 +365,7 @@ class singlePlayer extends React.Component {
                                               color="primary"
                                               avatar={<Avatar alt="dice" src={diceImage}
                                                               style={styles.usernamePanel}/>}
-                                              label="DICE-GAME"
+                                              label="COMPUTER"
                                         />
                                         <Typography variant='h5' style={styles.point}>{this.state.computerPoint}</Typography>
 
