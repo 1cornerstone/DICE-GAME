@@ -1,5 +1,5 @@
 import React from "react";
-import {Avatar, Breadcrumbs, Button, Chip, Container, Grid, Link, Paper, Typography} from "@material-ui/core";
+import {Avatar, Breadcrumbs, Button, Chip, Container, Grid, Link, Paper, Typography,List,ListItem,ListItemIcon,ListItemText} from "@material-ui/core";
 import dice6 from './assest/dice-1.png';
 import diceImage from "./assest/dice.png";
 import winner from "./assest/winner.png";
@@ -139,7 +139,7 @@ class singlePlayer extends React.Component {
        var check_hold ;
        //
          setTimeout(()=>{
-           check_hold = ( Math.floor(Math.random() * 10));
+           check_hold = ( Math.floor(Math.random() * 10)+1);
            ((check_hold % 3) === 0)?( this.onHold()):( this.onDiceRoll());
         },1000);
 
@@ -290,7 +290,14 @@ class singlePlayer extends React.Component {
 
 
                     <Grid  item >
-
+                        <List component="nav"   >
+                            <ListItem button>
+                                <ListItemIcon>
+                                    {/*<StarIcon />*/}
+                                </ListItemIcon>
+                                <ListItemText style={{textAlign:"center"}} primary="If 1 is rolled user player is hold automatically and it will not be added to your Scoreboard" />
+                            </ListItem>
+                        </List>
                     </Grid>
                     {/* main singleplayer Container*/}
 
