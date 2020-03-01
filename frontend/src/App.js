@@ -7,6 +7,7 @@ import  Home from './component/Home'
 import  Wallet from './component/wallet'
 import  Game from './component/singleplayer'
 import  Game2 from './component/multiplayer'
+import Transactions from './component/transaction'
 import  List from './component/onlineUserList'
 import  Profile from './component/profile'
 import  Footer from './component/footer'
@@ -26,6 +27,7 @@ function App() {
                     {/*<Route path="/multiPlayer" component={Game2} />*/}
                     <Route path="/players" component={List} />
                     <Route path="/wallet" component={Wallet} />
+                    <Route path="/transactions" component={Transactions} />
                     <Route path="/profile" component={Profile} />
                     <Redirect exact from="/" to='/home' />
                 </Switch>

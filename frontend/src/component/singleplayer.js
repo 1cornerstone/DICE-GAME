@@ -17,7 +17,7 @@ class singlePlayer extends React.Component {
         computerScore: 0,
         yourPoint: 0,
         computerPoint: 0,
-        toWin: 100,
+        toWin: 40,
         turn: 0,
           Username:'AKINDEV',
           gamePanel:false,
@@ -159,11 +159,7 @@ class singlePlayer extends React.Component {
         this.computerFunc();
     }
 
-    disableBtn (param){
-        this.setState({
-            nextCheck:param
-        })
-    }
+
     //
     reset =()=> {
 

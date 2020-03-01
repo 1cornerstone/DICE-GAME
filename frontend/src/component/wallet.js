@@ -52,7 +52,7 @@ class wallet extends React.Component {
     };
 
      transactionClicked =()=>{
-
+            window.location.href = '/transactions'
      };
 
     render() {
@@ -127,7 +127,7 @@ class wallet extends React.Component {
                             </div>
                         </Grid>
                         <Grid item sm='3' xs='12'>
-                            <Paper style={{padding: '40px', backgroundColor: '#5484C2', color: 'white'}} class='option'>
+                            <Paper style={{padding: '40px', backgroundColor: '#5484C2', color: 'white'}} class='option' onClick={this.transactionClicked}>
                                 <div style={styles.actionItem}>
                                     <TimelineOutlinedIcon/>
                                     <Typography>Transactions</Typography>
