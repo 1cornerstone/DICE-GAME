@@ -45,7 +45,6 @@ class dashboard extends React.Component {
             button:{
                 backgroundColor:'#392148',
                 color:'white',
-                margin: 'auto'
             }
         };
 
