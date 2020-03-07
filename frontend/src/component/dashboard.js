@@ -16,6 +16,11 @@ class dashboard extends React.Component {
 
     };
 
+     onMultiplayerGamebtnClicked =()=>{
+        window.location.href = '/multiplayer';
+
+    };
+
     onWalletBtnClicked = ()=>{
         window.location.href = '/wallet';
     };
@@ -24,7 +29,6 @@ class dashboard extends React.Component {
         window.location.href = '/players';
 
     };
-
 
   componentDidUpdate(prevProps, prevState, snapshot) {
         console.log('ds')
@@ -86,7 +90,7 @@ class dashboard extends React.Component {
                                 </Typography>
                             </CardContent>
                             <CardActions>
-                                <Button variant="outlined" style={styles.button} disabled startIcon={<PlayArrowIcon/>}>PLAY</Button>
+                                <Button variant="outlined" style={styles.button} onClick={this.onMultiplayerGamebtnClicked}  startIcon={<PlayArrowIcon/>}>PLAY</Button>
                             </CardActions>
                         </Card>
                     </Grid>
